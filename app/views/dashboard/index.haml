@@ -1,0 +1,14 @@
+.row-fluid
+  .span8
+    .page-header
+      %h3 My trips
+    %ul.thumbnails
+      -@my_trips.each do |trip|
+        %li.thumbnail
+          -#TODO substitute with trip's image
+          =image_tag("rails.png")
+          =link_to trip.trip_name, trip_path(trip)
+          %br
+          =trip.place_names
+    =link_to "New trip", new_trip_path, class: "btn btn-primary"
+  .span4

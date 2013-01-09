@@ -1,0 +1,30 @@
+=form_for @trip, html: { class: "form-horizontal" } do |f|
+  =field_set_tag form_title do
+    .control-group
+      =f.label :trip_name, class: "control-label"
+      .controls
+        =f.text_field :trip_name, class: "input-xlarge"
+    .control-group
+      =f.label :description, class: "control-label"
+      .controls
+        =f.text_area :description, class: "input-xlarge"
+    .control-group
+      =f.label :transport, class: "control-label"
+      .controls
+        =f.select :transport, Trip::TRANSPORT, {}, class: "input-xlarge"
+    .control-group
+      =f.label :trip_date, class: "control-label"
+      .controls
+        =f.date_select :trip_date, { end_year: Date.today.year, discard_day: true }, { class: "input-medium", id: "trip-date" }
+
+    .control-group
+      =label_tag "new_place", "Add a place", class: "control-label"
+      .controls
+        .input-append
+          %input{ class: "place-geocode input-xlarge", type: "text" }
+          =button_tag "create", type: "button", class: "btn", rel: "popover", id: "create-new-place"
+      %ul#sortable
+        =render "trip_places"
+
+    .form-actions
+      =f.submit "Submit", class: "btn new-trip-form"

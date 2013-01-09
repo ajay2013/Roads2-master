@@ -1,0 +1,14 @@
+%h2 comments
+
+%ul
+  - comments.each do |comment|
+    %li.comment
+      %h4
+        = comment.user.email
+        %small
+          at
+          =l comment.created_at
+      %p=simple_format comment.content
+      = link_to 'Destroy', [commentable, comment], method: :delete, data: { confirm: 'Are you sure?' }
+
+= render 'comments/form', :commentable => commentable, :comment => comments.build

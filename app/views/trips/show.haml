@@ -1,0 +1,26 @@
+.page-header
+  %h1=Trip.model_name.human
+%dl.dl-horizontal
+  %dt
+    %strong=Trip.human_attribute_name(:trip_name)
+  %dd=@trip.trip_name
+  -@trip.place_names.each_with_index do |place, index|
+    %dt
+      %strong Location #{index + 1}
+    %dd=place
+  %dt
+    %strong=Trip.human_attribute_name(:description)
+  %dd=@trip.description
+  %dt
+    %strong=Trip.human_attribute_name(:transport)
+  %dd=@trip.transport
+  %dt
+    %strong=Trip.human_attribute_name(:trip_date)
+  %dd=short_date(@trip)
+
+  #comments=render 'comments/index', :commentable => @trip, :comments => @trip.comments
+-if my_trip?(@trip)
+  .form-actions
+    =link_to "Back to trips", trips_path, class: "btn"
+    =link_to "Edit trip", edit_trip_path(@trip), class: "btn"
+    =link_to "Delete", trip_path(@trip), method: :delete, class: "btn btn-danger"

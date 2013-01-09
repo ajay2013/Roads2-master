@@ -1,0 +1,37 @@
+// Place all the styles related to the trips controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "compass";
+
+form.form-horizontal {
+  background-color: #d6f9ff; // Old browsers
+  @include filter-gradient(#d6f9ff, #9ee8fa, vertical); // IE6-9
+  @include background-image(linear-gradient(top, #d6f9ff 0%,#9ee8fa 100%));
+}
+
+ul#sortable {
+  list-style-type: none;
+  margin: 5px;
+  padding: 5px;
+  max-width: 750px;
+  li {
+    margin: 3px;
+    padding: 3px;
+    float: left;
+    width: 150px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: default;
+    button {
+      float: right;
+    }
+  }
+}
+
+//Fix for not visible content in popover
+div.popover-content {
+  white-space: normal;
+  font-size: 14px;
+}

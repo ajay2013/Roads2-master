@@ -1,0 +1,24 @@
+.page-header
+  %h1 Trips
+%table.table.table-striped
+  %thead
+    %tr
+      %th=Trip.human_attribute_name(:id)
+      %th=Trip.human_attribute_name(:trip_name)
+      %th Locations
+      %th=Trip.human_attribute_name(:transport)
+      %th=Trip.human_attribute_name(:trip_date)
+      %th Actions
+  %tbody
+    -@trips.each do |trip|
+      %tr
+        %td=link_to trip.id, trip_path(trip)
+        %td=trip.trip_name
+        %td=trip.place_names.join(", ")
+        %td=trip.transport
+        %td=short_date(trip)
+        -if my_trip?(trip)
+          %td
+            =link_to "Edit", edit_trip_path(trip), class: "btn btn-mini"
+            =link_to "Delete", trip_path(trip), method: :delete, class: "btn btn-mini btn-danger"
+=link_to "New trip", new_trip_path, class: "btn btn-primary"
